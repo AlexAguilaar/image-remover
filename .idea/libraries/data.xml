@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="data">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/image_background_remover/.venv/Lib/site-packages/pooch/tests/data/store.zip!/" />
+      <root url="jar://$PROJECT_DIR$/image_background_remover/.venv/Lib/site-packages/pooch/tests/data/tiny-data.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

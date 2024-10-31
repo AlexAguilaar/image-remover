@@ -1,0 +1,34 @@
+import os
+from dataclasses import replace
+
+from PIL import Image
+from rembg import remove
+import streamlit as st
+
+def save_uploaded_file(uploaded_file):
+    upload_dir = "uploads"
+    if not os.path.exists(upload_dir):
+        os.makedirs(upload_dir)
+    file_path = os.path.join(upload_dir, uploaded_file.name)
+    with open(file_path, 'wb+') as f:
+        f.write(uploaded_file.getbuffer())
+    return file_path
+
+def run_background_remover(input_img_file):
+    input_img_path = save_uploaded_file(input_img_file)
+    output_img_path = input_img_path.replace(__old:'.', __new:'_rmbg.').replace(__old:'jpg', __new:'png').replace(__old:'jpeg', __new:'png')
+    try:
+        image = Image.open(input_img_path)
+        output = remove(image)
+        output.save(output_img_path, "PNG")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.header("Antes")
+            st.image(input_img_path, caption="Imagen Original")
+            with open(input_img_path, "rb") as image_file:
+                st.download_button(
+                    label="Descargar Imagen Original",
+                    data=image_file,
+                    file_name=os.path.basename(input_img_path),
+                    mime='image/jpeg'
+                )
